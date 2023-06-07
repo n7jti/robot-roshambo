@@ -1,4 +1,5 @@
 ## Game
+(c) Alan Ludwig, All rights reserved 
 
 A game of rock-paper-scissors
 
@@ -18,7 +19,7 @@ sequenceDiagram
 ``` mermaid
 stateDiagram-v2
 
-# reieve an invite
+# receive an invite
     [*] --> Idle
 
     note left of Idle
