@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "uart.h"
 
 // constants
 constexpr uint LED_PIN = PICO_DEFAULT_LED_PIN;
@@ -12,6 +13,10 @@ void setup(){
     setup_default_uart();
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+
+    // Setup the UART we'll play the game with
+    setup_uart(); 
+
     return;
 }
 

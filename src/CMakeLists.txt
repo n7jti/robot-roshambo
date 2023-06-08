@@ -3,6 +3,7 @@
 # Tell CMake where to find the executable source file
 add_executable(${PROJECT_NAME} 
     main.cpp
+    uart.cpp
 )
 
 # Link to pico_stdlib (gpio, time, etc. functions)
