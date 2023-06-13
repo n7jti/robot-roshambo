@@ -57,39 +57,37 @@ stateDiagram-v2
 
 [*] --> Idle
 # PLAY
-Idle --> P
-P --> L
-L --> PLAY
+Idle --> P : P
+
+P --> PLAY : L
 
 
 #YES
-Idle --> Y
-Y --> E
-E --> YES
+Idle --> Y : Y
+Y --> YES : E
 
 #ROCK
-Idle --> R
-R --> ROCK
+Idle --> ROCK : R
 
 #PAPER
-P --> A
-A --> PAPER
+P --> PAPER : A
 
 #SCISSORS
-Idle --> S
-S --> Scissors
+Idle --> Scissors : S
 
 #YOU WIN
-Y --> O
-O --> YOU_WIN
+Y --> YOU_WIN : 0
 
 #I WIN
-Idle --> I
-I --> I_WIN
+Idle --> I_WIN : I
 
 #TIE
-Idle --> T
-T --> TIE
+Idle --> TIE : T
+
+# SKIP
+Idle --> SKIP : anything else
+
+SKIP --> [*] : cr
 
 
 
