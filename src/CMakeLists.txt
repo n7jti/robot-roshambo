@@ -4,6 +4,7 @@
 add_executable(${PROJECT_NAME} 
     main.cpp
     uart.cpp
+    cmd_parser.cpp
 )
 
 # Link to pico_stdlib (gpio, time, etc. functions)
