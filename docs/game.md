@@ -37,6 +37,9 @@ stateDiagram-v2
     Idle --> Invite : send invite
     Invite --> Move : receive yes
 
+#Over
+over --> [*]
+
 
 ```
 ## Total Vocabulary
@@ -56,38 +59,59 @@ Command Parser
 stateDiagram-v2
 
 [*] --> Idle
-# PLAY
-Idle --> P : P
 
+
+#Idle
+Idle --> P : P
+Idle --> Y : Y
+Idle --> ROCK : R
+Idle --> Scissors : S
+Idle --> TIE : T
+Idle --> I_WIN : I
+Idle --> Idle : whitespace
+Idle --> SKIP : anything else
+
+#P
 P --> PLAY : L
+P --> PAPER : A
+P --> SKIP : else
+
+
+# PLAY
+PLAY --> SKIP : fire on_play
+
+#Y
+Y --> YES : E
+Y --> YOU_WIN : O
+Y --> SKIP : else
 
 
 #YES
-Idle --> Y : Y
-Y --> YES : E
+YES --> SKIP 
 
 #ROCK
-Idle --> ROCK : R
+ROCK --> SKIP 
 
 #PAPER
-P --> PAPER : A
+PAPER --> SKIP : fire on_paper
+
 
 #SCISSORS
-Idle --> Scissors : S
+Scissors --> SKIP : fire on_scissors
 
 #YOU WIN
-Y --> YOU_WIN : 0
+YOU_WIN --> SKIP : fire on_you_win
+
 
 #I WIN
-Idle --> I_WIN : I
+I_WIN --> SKIP : fire on_i_win
 
 #TIE
-Idle --> TIE : T
+TIE --> SKIP : fire on_tie
 
 # SKIP
-Idle --> SKIP : anything else
-
 SKIP --> [*] : cr
+SKIP --> SKIP : ~cr
 
 
 

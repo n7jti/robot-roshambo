@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "uart.h"
+#include "game.h"
+#include "cmd_parser.h"
 
 // constants
 constexpr uint LED_PIN = PICO_DEFAULT_LED_PIN;
@@ -11,11 +13,13 @@ constexpr uint LED_PIN = PICO_DEFAULT_LED_PIN;
 void setup(){
     // Standard Pico
     stdio_init_all();
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
 
     // Setup the UART we'll play the game with
     setup_uart(); 
+
+    init_cmd_parser();
+    init_game_engine(); 
+
 
     return;
 }
@@ -23,11 +27,9 @@ void setup(){
 
 // This loop function will be called forever
 void loop(){
-    gpio_put(LED_PIN, 1);
-    printf("Hello, world!\n");
-    sleep_ms(250);
-    gpio_put(LED_PIN, 0);
-    sleep_ms(250);
+
+    process_input();
+    game_process_moves(); 
     return; 
 }
 
