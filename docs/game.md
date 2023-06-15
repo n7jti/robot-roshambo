@@ -16,29 +16,28 @@ sequenceDiagram
     Bob->>Alice : "You Win" or "I Win" or "Tie"
 ```
 
+
+
+
 ``` mermaid
 stateDiagram-v2
 
-# receive an invite
-    [*] --> Idle
+# Start
+[*] --> IDLE
 
-    note left of Idle
-        All errors 
-        (including 2 second timeout) 
-        return to idle state
-    end note
+# IDLE
+    IDLE --> MOVE : MOVE_PLAY (Send Yes + ROCK/PAPER/SCISSORS)
+    IDLE --> INVITE : MOVE_START (Send Play)
 
-    Idle --> Invited : receive invite
-    Invited --> Move : send yes
-    Move --> over : send move
-    over --> Idle : game over received
+# invite
+    INVITE --> MOVE: MOVE_YES (Send ROCK/PAPER/SCISSORS)
 
-# send an invite
-    Idle --> Invite : send invite
-    Invite --> Move : receive yes
+# MOVE
+   MOVE --> RESULT : MOVE_ROCK/PAPER/SCISSORS (Send YOU_WIN/I_WIN/TIE)
 
-#Over
-over --> [*]
+# RESULT
+    RESULT --> IDLE : MOVE_YOU_WIN/I_WIN/TIE
+
 
 
 ```

@@ -66,9 +66,9 @@ int process_input()
                 parser_state = PARSER_STATE_SKIP;
                 break;
             case '\r':
+            case '\n':
             case ' ':
             case '\t':
-            case '\n':
                 break;
             default:
                 parser_state = PARSER_STATE_SKIP;
@@ -110,8 +110,9 @@ int process_input()
         
             switch (ch)
             {
+                case '\r':
                 case '\n':
-                    // on '\n' go back to Idle state
+                    // on '\r' or '\n' go back to Idle state
                     parser_state = PARSER_STATE_IDLE;
                     break;
                 default:
