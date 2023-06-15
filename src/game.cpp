@@ -80,7 +80,7 @@ int game_push_move(Move move)
     ret = queue_try_add(&move_fifo, &move);
 
     // Return 0 on success or
-    return ret ? ERROR_SUCCESS : MOVE_QUEUE_FULL;
+    return ret ? ERROR_SUCCESS : ERROR_MOVE_QUEUE_FULL;
 }
 
 void send_move(const Move &move)
