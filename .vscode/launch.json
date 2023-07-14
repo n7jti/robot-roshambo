@@ -19,7 +19,6 @@
                 "break main",
                 "continue"
             ],
-            // REVIEW:
             "searchDir": [
                 "/pico/openocd/tcl"
             ],
