@@ -6,6 +6,8 @@
 #include "error.h"
 #include "game.h"
 #include "uart.h"
+#include "ai.h"
+#include "led.h"
 
 queue_t move_fifo;
 Game_State game_state;
@@ -64,7 +66,9 @@ Move get_result(const Move &them, const Move &me)
         }
     }
 
-    return ret; 
+    their_last_move(them);
+
+    return ret;
 }
 
 int init_game_engine()
@@ -136,6 +140,7 @@ int game_process_moves()
                 break;
             case MOVE_PLAY:
                 send_move(MOVE_YES);
+                led_clear();
                 // TODO: Call the AI here and get a move
                 // In the mean time. always choose ROCK
                 my_move = MOVE_ROCK;
@@ -152,9 +157,7 @@ int game_process_moves()
             switch (move)
             {
             case MOVE_YES:
-                // TODO: Call the AI here and get a move
-                // In the mean time. always choose ROCK
-                my_move = MOVE_ROCK;
+                my_move = get_move();
                 send_move(my_move);
                 game_state = GAME_STATE_MOVE;
                 break;
@@ -170,10 +173,17 @@ int game_process_moves()
             case MOVE_ROCK:
             case MOVE_PAPER:
             case MOVE_SCISSORS:
+            {
                 their_move = move;
-                send_move(get_result(their_move, my_move)); 
-                game_state = GAME_STATE_RESULT; 
-                break;
+                Move result = get_result(their_move, my_move);
+                send_move(result);
+                led_clear();
+                led_set_my_move(my_move);
+                led_set_their_move(their_move);
+                led_set_result(result);
+                game_state = GAME_STATE_RESULT;
+            }
+            break;
             default:
                 send_move(MOVE_ERROR);
                 game_state = GAME_STATE_IDLE;
