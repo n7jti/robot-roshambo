@@ -35,6 +35,8 @@ void init_led()
     gpio_put(oe_pin, false);
 
     led_value = 0;
+
+    led_clear(); 
 }
 
 static void write_value(uint16_t value)
@@ -67,7 +69,8 @@ static void write_value(uint16_t value)
 void led_clear()
 {
     // uart_puts(UART_ID, "clear!\n");
-    write_value(0x0000);
+    led_value = 0x0000; 
+    write_value(led_value);
 }
 
 void led_set_my_move(Move my_move)
