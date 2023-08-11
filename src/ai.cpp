@@ -17,7 +17,7 @@ void init_ai()
     current_move = 0;
 }
 
-Move get_move()
+Move ai_get_move()
 {
     Move my_move;
     my_move = MOVE_ROCK;
@@ -25,8 +25,13 @@ Move get_move()
     return my_move;
 }
 
-void their_last_move(const Move move)
+void ai_their_last_move(const Move move)
 {
     their_moves[current_move % MOVES_PER_GAME] = move;
     return;
+}
+
+void ai_move_complete(){
+    current_move++;
+    current_move %= MOVES_PER_GAME;
 }

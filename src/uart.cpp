@@ -46,7 +46,7 @@ void setup_uart()
     // OK, all set up.
     // Lets send a basic string out, and then run a loop and wait for RX interrupts
     // The handler will count them, but also reflect the incoming data back with a slight change!
-    uart_puts(UART_ID, "\nHello, uart interrupts\n");
+    // uart_puts(UART_ID, "\nHello, uart interrupts\n");
 }
 
 // RX interrupt handler

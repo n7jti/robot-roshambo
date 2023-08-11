@@ -37,10 +37,10 @@ int process_input()
         // echo characters to the screen
         // this is only for interaction with Humans for debugging.  
         // must be removed or it will confuse the robots
-        uart_putc(UART_ID, ch);
-        if ('\r' == ch){
-            uart_putc(UART_ID, '\n');
-        }
+        //uart_putc(UART_ID, ch);
+        //if ('\r' == ch){
+        //    uart_putc(UART_ID, '\n');
+        //}
 
 
         switch (parser_state)

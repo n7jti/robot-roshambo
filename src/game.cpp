@@ -66,7 +66,8 @@ Move get_result(const Move &them, const Move &me)
         }
     }
 
-    their_last_move(them);
+    ai_their_last_move(them);
+    ai_move_complete(); 
 
     return ret;
 }
@@ -128,7 +129,8 @@ int game_process_moves()
     Move move;
     while (queue_try_remove(&move_fifo, &move))
     {
-        send_move(move);
+        // uncomment to echo the recieved command
+        // send_move(move);
         switch (game_state)
         {
         case GAME_STATE_IDLE:
@@ -157,7 +159,7 @@ int game_process_moves()
             switch (move)
             {
             case MOVE_YES:
-                my_move = get_move();
+                my_move = ai_get_move();
                 send_move(my_move);
                 game_state = GAME_STATE_MOVE;
                 break;
