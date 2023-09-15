@@ -31,9 +31,5 @@
 *.out
 *.app
 
-
-# Don't check-in vscode files
-.vscode/**
-
 # Don't check-in the build files
-build/**
+build
