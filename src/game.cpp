@@ -15,6 +15,11 @@ Game_State game_state;
 Move my_move;
 Move their_move;
 
+Game_State game_get_state()
+{
+    return game_state;
+}
+
 Move get_result(const Move &them, const Move &me)
 {
 
@@ -67,7 +72,7 @@ Move get_result(const Move &them, const Move &me)
     }
 
     ai_their_last_move(them);
-    ai_move_complete(); 
+    ai_move_complete();
 
     return ret;
 }

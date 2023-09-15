@@ -7,6 +7,7 @@
 #include "cmd_parser.h"
 #include "ai.h"
 #include "led.h"
+#include "button.h"
 
 // constants
 constexpr uint LED_PIN = PICO_DEFAULT_LED_PIN;
@@ -32,7 +33,15 @@ void setup()
 void loop()
 {
 
-    process_input();
+    Game_State game_state = game_get_state();
+    if (GAME_STATE_IDLE == game_state && true == get_bootsel_button())
+    {
+        game_push_move(MOVE_START);
+    }
+    else
+    {
+        process_input();
+    }
     game_process_moves();
     return;
 }

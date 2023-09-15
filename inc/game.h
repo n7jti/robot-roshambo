@@ -31,3 +31,4 @@ typedef enum e_Game_State
 int init_game_engine();
 int game_push_move(Move move);
 int game_process_moves();
+Game_State game_get_state(); 
