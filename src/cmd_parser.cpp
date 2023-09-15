@@ -114,6 +114,7 @@ int process_input()
                 parser_state = PARSER_STATE_YOU_WIN;
                 parser_state_before_skip = parser_state;
                 parser_state = PARSER_STATE_SKIP;
+                break;
             default:
                 parser_state_before_skip = PARSER_STATE_IDLE;
                 parser_state = PARSER_STATE_SKIP;
