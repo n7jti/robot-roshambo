@@ -8,6 +8,7 @@ add_executable(${PROJECT_NAME}
     game.cpp
     ai.cpp
     led.cpp
+    button.cpp
 )
 
 # Link to pico_stdlib (gpio, time, etc. functions)
